@@ -7,9 +7,9 @@ import { ReactFuel } from './ReactFuel';
 function App() {
   return (
     <div className="App">
-     // <FuelCal/>
-     // <ReactFuel/>
-     <Navigation/>
+     //<FuelCal/>
+     <ReactFuel/>
+     // <Navigation/>
   
     </div>
   );
