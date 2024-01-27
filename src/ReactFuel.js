@@ -64,7 +64,7 @@ export const ReactFuel = () => {
         </div>
 
     <div>
-        <form className='form row gy-2 gx-3 align-items-center'>
+        <form novalidate className='form row gy-2 gx-3 align-items-center'>
             <div class="col-auto">
                 <label for="autoSizingInput">UPLIFT(LTS):</label>
                 <input type='number' class="form-control" id="autoSizingInput" name='uplift'onChange={handleValueChange}  />
