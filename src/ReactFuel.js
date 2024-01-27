@@ -6,6 +6,7 @@ export const ReactFuel = () => {
         uplift: 0,
         sp_gravity: 0,
         dp_fuel: 0,
+        br_opening:0
         
       });
     
@@ -13,6 +14,7 @@ export const ReactFuel = () => {
         uplift: 0,
         sp_gravity: 0,
         dp_fuel: 0,
+          br_opening:0
         
       });
 
@@ -72,14 +74,14 @@ export const ReactFuel = () => {
            
             <div class="col-auto">
                 <label for="autoSizingInput">SPECIFIC GRAVITY: </label>
-                <input type='number' step='0.001'
+                <input type='number' 
           class="form-control" id="autoSizingInput"  name='sp_gravity' onChange={handleValueChange} />
             </div>
             
 
            <div class="col-auto">
-                <label for="autoSizingInput">BROWSER OPENING: </label>
-                <input class="form-control" id="autoSizingInput" type='number'/>
+                <label for="autoSizingInput">BOWSER OPENING: </label>
+                <input class="form-control" id="autoSizingInput" onChange={handleValueChange} type='number'/>
            </div>
 
             <div class="col-auto">
@@ -171,8 +173,8 @@ export const ReactFuel = () => {
 
     <div className='broswer form row gy-2 gx-3 align-items-center '>
         <div className='col-auto'>
-            <label for="autoSizingInput">BROWSER CLOSSING</label>
-            <input type='number'class="form-control" id="autoSizingInput"  value={calculatedFuelValues.uplift}/>
+            <label for="autoSizingInput">BOWSER CLOSSING</label>
+            <input type='number'class="form-control" id="autoSizingInput"  value={calculatedFuelValues.uplift+calculatedFuelValues.br_opening}/>
         </div>
         
         <div  className='col-auto'>
