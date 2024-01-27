@@ -34,7 +34,7 @@ export const ReactFuel = () => {
       const lowerFuel = (calculatedFuelValues.dp_fuel)/2
       const higherFuel = (((calculatedFuelValues.dp_fuel)/2)-5500)*2
 
-  
+      
       //Logic to calculate LH & RH tank Value
 
       const calUplift = ((calculatedFuelValues.uplift)*(calculatedFuelValues.sp_gravity))
@@ -45,11 +45,14 @@ export const ReactFuel = () => {
         const LastUplist = (LHuplift)/2
         // console.log(LastUplist)
      
-
+        
         const RHuplift = Math.floor((calUplift)/10)*10
         const depRHUplift = (RHuplift - higherFuel)/2
         const LastRHUplist = (RHuplift)/2
         // console.log(LastRHUplist)
+
+
+        const clossing = ((calculatedFuelValues.uplift)+(calculatedFuelValues.br_opening))
   
   return (
     <div>
@@ -174,7 +177,7 @@ export const ReactFuel = () => {
     <div className='broswer form row gy-2 gx-3 align-items-center '>
         <div className='col-auto'>
             <label for="autoSizingInput">BOWSER CLOSSING</label>
-            <input type='number'class="form-control" id="autoSizingInput"  value={calculatedFuelValues.uplift+calculatedFuelValues.br_opening}/>
+            <input type='number'class="form-control" id="autoSizingInput"  value={clossing}/>
         </div>
         
         <div  className='col-auto'>
