@@ -72,7 +72,7 @@ export const ReactFuel = () => {
            
             <div class="col-auto">
                 <label for="autoSizingInput">SPECIFIC GRAVITY: </label>
-                <input type='number' step='0.01'
+                <input type='number' step='0.001'
           class="form-control" id="autoSizingInput"  name='sp_gravity' onChange={handleValueChange} />
             </div>
             
