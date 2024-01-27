@@ -58,7 +58,8 @@ export const FuelCal = () => {
             <input type='number' id='uplift' value={uplift} onChange={(e)=>setUplift(e.target.value)}/>
 
             <label>SPECIFIC GRAVITY: </label>
-            <input type='number' id='specificGravity' value={specificGravity} onChange={(e)=>setSpecificGravity(e.target.value)}/>
+            <input type='number' id='specificGravity' min="0" 
+        max="1" step="0.01" value={specificGravity} onChange={(e)=>setSpecificGravity(e.target.value)}/>
 
             <label>BROWSER OPENING: </label>
             <input type='number'/>
