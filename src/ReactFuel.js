@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const ReactFuel = () => {
+  const [bar, setbar] = useState(false);
   const [fuelValues, setFuelValues] = React.useState({
     uplift: 0,
     sp_gravity: 0,
@@ -31,6 +32,7 @@ export const ReactFuel = () => {
   };
   const lowerFuel = calculatedFuelValues.dp_fuel / 2;
   const higherFuel = (calculatedFuelValues.dp_fuel / 2 - 5500) * 2;
+  const higherFuelBar = (calculatedFuelValues.dp_fuel / 2 - 6000) * 2;
 
   //Logic to calculate LH & RH tank Value
 
@@ -44,15 +46,43 @@ export const ReactFuel = () => {
   // console.log(LastUplist)
 
   const RHuplift = Math.floor(calUplift / 10) * 10;
-  const depRHUplift = (RHuplift - higherFuel) / 2;
+  const depRHUplift = !bar
+    ? (RHuplift - higherFuelBar) / 2
+    : (RHuplift - higherFuel) / 2;
   const LastRHUplist = RHuplift / 2;
-  // console.log(LastRHUplist)
+  console.log(LastRHUplist);
 
   let Clossing =
     Number(calculatedFuelValues.uplift) +
     Number(calculatedFuelValues.br_opening);
-  console.log(Clossing);
+  // console.log(Clossing);
 
+  const totalCTR = !bar
+    ? lowerFuel > 5500
+      ? higherFuelBar
+      : 0
+    : lowerFuel > 5500
+    ? higherFuel
+    : 0;
+  console.log(totalCTR);
+  const totalLh =
+    lowerFuel > 5500
+      ? (LastUplist / 2) % 10 === 0
+        ? depUplift
+        : depRHUplift
+      : LastUplist % 10 === 0
+      ? LastUplist
+      : LastRHUplist;
+
+  const upliftTotal = !bar
+    ? lowerFuel > 5500
+      ? 6000
+      : lowerFuel
+    : lowerFuel > 5500
+    ? 5500
+    : lowerFuel;
+
+  console.log(upliftTotal);
   return (
     <div className="bg">
       <h1>A320/21 FUEL CALCULATION</h1>
@@ -68,12 +98,13 @@ export const ReactFuel = () => {
           >
             5500 KGS
           </label>
-          {/* <input
+          <input
             className="form-check-input check form-control"
             type="checkbox"
             role="switch"
             id="autoSizingInput"
-          /> */}
+            onClick={() => setbar(!bar)}
+          />
         </div>
       </div>
 
@@ -151,66 +182,30 @@ export const ReactFuel = () => {
           <tbody>
             <tr>
               <th scope="row">LH</th>
-              <td id="lhArrival">
-                {lowerFuel > 5500
-                  ? 5500 -
-                    ((LastUplist / 2) % 10 === 0 ? depUplift : depRHUplift)
-                  : lowerFuel -
-                    (LastUplist % 10 === 0 ? LastUplist : LastRHUplist)}
-              </td>
+              <td id="lhArrival">{upliftTotal - totalLh}</td>
 
-              <td id="lhUplift">
-                {lowerFuel > 5500
-                  ? (LastUplist / 2) % 10 === 0
-                    ? depUplift
-                    : depRHUplift
-                  : LastUplist % 10 === 0
-                  ? LastUplist
-                  : LastRHUplist}
-              </td>
-              <td id="lh">{lowerFuel > 5500 ? 5500 : lowerFuel}</td>
+              <td id="lhUplift">{totalLh}</td>
+              <td id="lh">{upliftTotal}</td>
             </tr>
 
             <tr>
               <th scope="row">CTR</th>
               <td>0</td>
-              <td id="ctrUplift">{lowerFuel > 5500 ? higherFuel : 0}</td>
-              <td id="ctcFueldep">{lowerFuel > 5500 ? higherFuel : 0}</td>
+              <td id="ctrUplift"> {totalCTR}</td>
+              <td id="ctcFueldep">{totalCTR}</td>
             </tr>
 
             <tr>
               <th scope="row">RH</th>
-              <td id="rhArrival">
-                {lowerFuel > 5500
-                  ? 5500 -
-                    ((LastUplist / 2) % 10 === 0 ? depUplift : depRHUplift)
-                  : lowerFuel -
-                    (LastUplist % 10 === 0 ? LastUplist : LastRHUplist)}
-              </td>
-              <td id="rhUplift">
-                {lowerFuel > 5500
-                  ? (LastUplist / 2) % 10 === 0
-                    ? depUplift
-                    : depRHUplift
-                  : LastUplist % 10 === 0
-                  ? LastUplist
-                  : LastRHUplist}
-              </td>
-              <td id="rh">{lowerFuel > 5500 ? 5500 : lowerFuel}</td>
+              <td id="rhArrival">{upliftTotal - totalLh}</td>
+              <td id="rhUplift">{totalLh}</td>
+              <td id="rh">{upliftTotal}</td>
             </tr>
 
             <tr>
               <th scope="row">TOTAL</th>
-              <td id="totalArrival">
-                {(lowerFuel > 5500
-                  ? 5500 -
-                    ((LastUplist / 2) % 10 === 0 ? depUplift : depRHUplift)
-                  : lowerFuel -
-                    (LastUplist % 10 === 0 ? LastUplist : LastRHUplist)) * 2}
-              </td>
-              <td id="totalUplift">
-                {LastUplist % 10 === 0 ? LHuplift : RHuplift}
-              </td>
+              <td id="totalArrival">{(upliftTotal - totalLh) * 2}</td>
+              <td id="totalUplift">{totalCTR + totalLh + totalLh}</td>
               <td id="total">{calculatedFuelValues.dp_fuel}</td>
             </tr>
           </tbody>
