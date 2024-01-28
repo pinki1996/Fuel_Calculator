@@ -54,7 +54,7 @@ export const ReactFuel = () => {
   console.log(Clossing);
 
   return (
-    <div>
+    <div className="bg">
       <h1>A320/21 FUEL CALCULATION</h1>
       <h3>WITHOUT ARRIVAL FUEL</h3>
       <div className="wing_tank">
@@ -68,12 +68,12 @@ export const ReactFuel = () => {
           >
             5500 KGS
           </label>
-          <input
+          {/* <input
             className="form-check-input check form-control"
             type="checkbox"
             role="switch"
             id="autoSizingInput"
-          />
+          /> */}
         </div>
       </div>
 

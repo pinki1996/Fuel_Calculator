@@ -1,4 +1,15 @@
-.App {
+
+.bg{
+ 
+}
+.App { 
+  width: 100vw;
+  overflow: hidden;
+  height: 100vh;
+  background-image: url("../public/white-cloud-blue-sky.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background:skyblue; */
   text-align: center;
 }
 h1,h3{
